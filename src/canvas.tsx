@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { RGBA } from "./atoms";
+import imageSrc from "./omr.png";
 
 const OmrCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -9,7 +10,7 @@ const OmrCanvas = () => {
     const ctx = canvasRef.current!.getContext("2d");
     if (ctx) {
       const image = new Image();
-      image.src = "Omr.png";
+      image.src = `${imageSrc}`;
       image.onload = () => {
         ctx!.drawImage(image, 0, 0);
 
