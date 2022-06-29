@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/omr-scanner/static/css/main.e6c13ad2.css",
-    "main.js": "/omr-scanner/static/js/main.11010916.js",
+    "main.js": "/omr-scanner/static/js/main.7aea73da.js",
     "static/media/omr.png": "/omr-scanner/static/media/omr.cc034aeb2f520ac0305c.png",
     "index.html": "/omr-scanner/index.html",
     "main.e6c13ad2.css.map": "/omr-scanner/static/css/main.e6c13ad2.css.map",
-    "main.11010916.js.map": "/omr-scanner/static/js/main.11010916.js.map"
+    "main.7aea73da.js.map": "/omr-scanner/static/js/main.7aea73da.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.11010916.js"
+    "static/js/main.7aea73da.js"
   ]
 }
