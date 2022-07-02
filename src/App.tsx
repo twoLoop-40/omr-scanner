@@ -1,4 +1,4 @@
-import Canvas from "./canvas";
+import Canvas from './canvas';
 
 function App() {
   return <Canvas />;
