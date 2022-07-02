@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { RGBA } from './atoms';
 import imageSrc from './omr.png';
-import { drawShape } from './utils/drawer';
+import { drawShape, getRGBACells } from './utils/drawer';
 import { smallBox } from './utils/shapeData';
 import { BoxData } from './utils/types';
 
@@ -32,7 +32,8 @@ const OmrCanvas = () => {
           smallBox.width,
           smallBox.height
         ).data;
-        console.log(rgbaData.length, rgbaData);
+        const rgbaCells = getRGBACells(rgbaData);
+        console.log(rgbaCells);
 
         //small box
         drawBox({
