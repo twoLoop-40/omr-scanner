@@ -1,3 +1,5 @@
+import { RGBA } from './types';
+
 export function drawShape<T>(
   ctx: CanvasRenderingContext2D,
   draw: (ctx: CanvasRenderingContext2D, shapeData: T) => void
@@ -5,13 +7,6 @@ export function drawShape<T>(
   return (shapeData: T) => {
     draw(ctx, shapeData);
   };
-}
-
-interface RGBA {
-  r: number;
-  g: number;
-  b: number;
-  a: number;
 }
 
 export function getRGBACells(rgbaData: Uint8ClampedArray): RGBA[] {

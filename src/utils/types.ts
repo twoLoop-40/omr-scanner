@@ -6,3 +6,10 @@ export interface BoxData {
   strokeStyle?: string;
   lineWidth?: number;
 }
+
+export interface RGBA {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}

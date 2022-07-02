@@ -1,14 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
-import { RGBA } from './atoms';
 import imageSrc from './omr.png';
+import { makeAverageRGBA } from './utils/calculator';
 import { drawShape, getRGBACells } from './utils/drawer';
 import { smallBox } from './utils/shapeData';
 import { BoxData } from './utils/types';
 
 const OmrCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [result, setResult] = useRecoilState(RGBA);
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d');
     if (ctx) {
@@ -34,6 +32,7 @@ const OmrCanvas = () => {
         ).data;
         const rgbaCells = getRGBACells(rgbaData);
         console.log(rgbaCells);
+        console.log(makeAverageRGBA(rgbaCells));
 
         //small box
         drawBox({
@@ -43,7 +42,7 @@ const OmrCanvas = () => {
         });
       };
     }
-  }, [canvasRef, result, setResult]);
+  }, [canvasRef]);
 
   return (
     <>
