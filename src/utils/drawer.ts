@@ -1,4 +1,4 @@
-import { RGBA } from './types';
+import { BoxData, RGBA } from './types';
 
 export function drawShape<T>(
   ctx: CanvasRenderingContext2D,
@@ -26,4 +26,12 @@ export function getRGBACells(rgbaData: Uint8ClampedArray): RGBA[] {
       a: rgba[3],
     };
   });
+}
+
+export function moveBox(box: BoxData, x: number, y: number) {
+  return {
+    ...box,
+    x: box.x + x,
+    y: box.y + y,
+  };
 }

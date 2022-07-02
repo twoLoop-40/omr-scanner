@@ -1,7 +1,3 @@
-// for (let i = 0; i < data.length; i += 4)
-//   setResult((result: any) => [...result, data.slice(i, i + 4)]);
-// console.log(result);
-
 //     //기준
 //     ctx.beginPath();
 //     ctx.moveTo(151, 73);
@@ -46,10 +42,6 @@
 //     ctx.moveTo(755, 183);
 //     ctx.lineTo(766, 183);
 //     ctx.stroke();
-
-export function shapes() {
-  return null;
-}
 
 export const smallBox = {
   x: 185,
