@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import imageSrc from './omr.png';
-import { makeAverageRGBA } from './utils/calculator';
+import { makeAverageRGBA, rgbaAvgDistance } from './utils/calculator';
 import { drawShape, getRGBACells } from './utils/drawer';
 import { smallBox } from './utils/shapeData';
-import { BoxData } from './utils/types';
+import { BoxData, RGBA } from './utils/types';
 
 const OmrCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -31,6 +31,14 @@ const OmrCanvas = () => {
           smallBox.height
         ).data;
         const rgbaCells = getRGBACells(rgbaData);
+        const origin: RGBA = {
+          r: 0,
+          g: 0,
+          b: 0,
+          a: 0,
+        };
+
+        console.log(rgbaAvgDistance(origin, rgbaCells));
         console.log(rgbaCells);
         console.log(makeAverageRGBA(rgbaCells));
 
