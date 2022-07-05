@@ -1,4 +1,4 @@
-import { BoxData, RGBA } from './types';
+import { BoxData, RGBAPosition } from './types';
 
 export function drawShape<T>(
   ctx: CanvasRenderingContext2D,
@@ -8,22 +8,34 @@ export function drawShape<T>(
     draw(ctx, shapeData);
   };
 }
-
-export function getRGBACells(rgbaData: Uint8ClampedArray): RGBA[] {
+interface Offset {
+  x: number;
+  y: number;
+}
+export function getRGBACells(
+  imageData: ImageData,
+  offset: Offset
+): RGBAPosition[] {
   const divideArrayToRGBA = (
     rgbaData: Uint8ClampedArray
   ): Uint8ClampedArray[] => {
-    if (rgbaData.length < 4) return [];
-    const head = rgbaData.slice(0, 4);
-    const tails = [...divideArrayToRGBA(rgbaData.slice(4))];
-    return [head, ...tails];
+    const rgbaArray = [];
+    for (let i = 0; i < rgbaData.length; i += 4) {
+      rgbaArray.push(rgbaData.slice(i, i + 4));
+    }
+    return rgbaArray;
   };
-  return divideArrayToRGBA(rgbaData).map(rgba => {
+  const { width } = imageData;
+  return divideArrayToRGBA(imageData.data).map((rgba, idx) => {
+    const x = (idx % width) + offset.x;
+    const y = Math.floor(idx / width) + offset.y;
     return {
       r: rgba[0],
       g: rgba[1],
       b: rgba[2],
       a: rgba[3],
+      x,
+      y,
     };
   });
 }

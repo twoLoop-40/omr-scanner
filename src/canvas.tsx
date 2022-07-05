@@ -23,14 +23,34 @@ const OmrCanvas = () => {
       image.src = `${imageSrc}`;
       image.onload = () => {
         ctx.drawImage(image, 0, 0);
-
+        const offset = { x: 10, y: 10 };
         const rgbaData = ctx.getImageData(
-          smallBox.x,
-          smallBox.y,
-          smallBox.width,
-          smallBox.height
-        ).data;
-        const rgbaCells = getRGBACells(rgbaData);
+          offset.x,
+          offset.y,
+          Math.floor(image.width / 4),
+          Math.floor(image.height / 4)
+        );
+        const rgbaCells = getRGBACells(rgbaData, offset);
+        const blackPixels = rgbaCells.filter(
+          cell => cell.r + cell.g + cell.b < 130
+        );
+        const leftmost = blackPixels.reduce((acc, curr) => {
+          return curr.x < acc.x ? curr : acc;
+        });
+        const uppermost = blackPixels.reduce((acc, curr) => {
+          return curr.y < acc.y ? curr : acc;
+        });
+        const center = {
+          x: uppermost.x,
+          y: leftmost.y,
+        };
+        drawBox({
+          x: center.x,
+          y: center.y,
+          width: 3,
+          height: 3,
+          strokeStyle: '#fff',
+        });
         const origin: RGBA = {
           r: 0,
           g: 0,
@@ -42,10 +62,9 @@ const OmrCanvas = () => {
         console.log(rgbaCells);
         console.log(makeAverageRGBA(rgbaCells));
 
-        //small box
         drawBox({
           ...smallBox,
-          strokeStyle: '#4c00ff',
+          strokeStyle: '#f5f4f6',
           lineWidth: 1,
         });
       };

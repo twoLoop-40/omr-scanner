@@ -13,3 +13,8 @@ export interface RGBA {
   b: number;
   a: number;
 }
+
+export interface RGBAPosition extends RGBA {
+  x: number;
+  y: number;
+}
