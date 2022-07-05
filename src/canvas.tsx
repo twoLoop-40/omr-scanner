@@ -5,6 +5,7 @@ import { drawShape, getRGBACells } from './utils/drawer';
 import { smallBox } from './utils/shapeData';
 import { BoxData, RGBA } from './utils/types';
 
+const BLACK_PIXEL = 130;
 const OmrCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -32,7 +33,7 @@ const OmrCanvas = () => {
         );
         const rgbaCells = getRGBACells(rgbaData, offset);
         const blackPixels = rgbaCells.filter(
-          cell => cell.r + cell.g + cell.b < 130
+          cell => cell.r + cell.g + cell.b < BLACK_PIXEL
         );
         const leftmost = blackPixels.reduce((acc, curr) => {
           return curr.x < acc.x ? curr : acc;
@@ -49,7 +50,7 @@ const OmrCanvas = () => {
           y: center.y,
           width: 3,
           height: 3,
-          strokeStyle: '#fff',
+          strokeStyle: '#7ba956',
         });
         const origin: RGBA = {
           r: 0,
