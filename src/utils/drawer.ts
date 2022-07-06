@@ -1,4 +1,4 @@
-import { BoxData, RGBAPosition } from './types';
+import { BoxData, Point, RGBAPosition } from './types';
 
 export function drawShape<T>(
   ctx: CanvasRenderingContext2D,
@@ -47,3 +47,9 @@ export function moveBox(box: BoxData, x: number, y: number) {
     y: box.y + y,
   };
 }
+
+export const getCircleCenter = <T extends Point>(xPoint: T, yPoint: T) => {
+  const x = xPoint.x;
+  const y = yPoint.y;
+  return { x, y } as T;
+};

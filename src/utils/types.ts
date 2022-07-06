@@ -18,3 +18,8 @@ export interface RGBAPosition extends RGBA {
   x: number;
   y: number;
 }
+
+export interface Point {
+  x: number;
+  y: number;
+}

@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import imageSrc from './omr.png';
 import { makeAverageRGBA, rgbaAvgDistance } from './utils/calculator';
-import { drawShape, getRGBACells } from './utils/drawer';
+import { drawShape, getCircleCenter, getRGBACells } from './utils/drawer';
 import { smallBox } from './utils/shapeData';
-import { BoxData, RGBA } from './utils/types';
+import { BoxData, Point, RGBA } from './utils/types';
 
 const BLACK_PIXEL = 130;
 const OmrCanvas = () => {
@@ -41,13 +41,11 @@ const OmrCanvas = () => {
         const uppermost = blackPixels.reduce((acc, curr) => {
           return curr.y < acc.y ? curr : acc;
         });
-        const center = {
-          x: uppermost.x,
-          y: leftmost.y,
-        };
+
+        const center = getCircleCenter<Point>(uppermost, leftmost);
+
         drawBox({
-          x: center.x,
-          y: center.y,
+          ...center,
           width: 3,
           height: 3,
           strokeStyle: '#7ba956',
